@@ -1,18 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="fernet-dotnet-license.txt" />
-    <Compile Include="Houdini.fs" />
+    <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fernet" Version="0.1.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="3.1.0" />
-    <PackageReference Include="Microsoft.Extensions.FileSystemGlobbing" Version="3.1.0" />
+    <ProjectReference Include="..\HoudiniLib\HoudiniLib.fsproj" />
   </ItemGroup>
 
 </Project>

@@ -3,9 +3,8 @@
 ################################################################################
 
 /Houdini/.vs/Houdini
-/Houdini/src/Houdini/bin
-/Houdini/src/Houdini/obj
-/Houdini/src/Houdini.Tests/bin
-/Houdini/src/Houdini.Tests/obj
-/Houdini/src/HoudiniApp/bin
-/Houdini/src/HoudiniApp/obj
+/Houdini/**/bin
+/Houdini/**/obj
+/Houdini/publish
+/Houdini/src/**/Properties/PublishProfiles
+/Houdini/**/*.fsproj.user

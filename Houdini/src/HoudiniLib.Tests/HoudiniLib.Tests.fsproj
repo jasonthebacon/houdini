@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Houdini\Houdini.fsproj" />
+    <ProjectReference Include="..\HoudiniLib\HoudiniLib.fsproj" />
   </ItemGroup>
 
 </Project>

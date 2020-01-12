@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{46AC1D88-BD23-4764-BE4D-8E0EDC27BBC5}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Houdini", "src\Houdini\Houdini.fsproj", "{C0D8CDA6-4929-45A7-AC8F-9CC292D0089D}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "HoudiniLib", "src\HoudiniLib\HoudiniLib.fsproj", "{C0D8CDA6-4929-45A7-AC8F-9CC292D0089D}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HoudiniApp", "src\HoudiniApp\HoudiniApp.fsproj", "{1C81927F-312E-4F83-8910-BB9392E88658}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Houdini", "src\Houdini\Houdini.fsproj", "{1C81927F-312E-4F83-8910-BB9392E88658}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Houdini.Tests", "src\Houdini.Tests\Houdini.Tests.fsproj", "{BA10DCDB-AD58-437F-A71C-B5C440728735}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "HoudiniLib.Tests", "src\HoudiniLib.Tests\HoudiniLib.Tests.fsproj", "{BA10DCDB-AD58-437F-A71C-B5C440728735}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +19,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C0D8CDA6-4929-45A7-AC8F-9CC292D0089D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -61,9 +58,15 @@ Global
 		{BA10DCDB-AD58-437F-A71C-B5C440728735}.Release|x86.ActiveCfg = Release|Any CPU
 		{BA10DCDB-AD58-437F-A71C-B5C440728735}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{C0D8CDA6-4929-45A7-AC8F-9CC292D0089D} = {46AC1D88-BD23-4764-BE4D-8E0EDC27BBC5}
 		{1C81927F-312E-4F83-8910-BB9392E88658} = {46AC1D88-BD23-4764-BE4D-8E0EDC27BBC5}
 		{BA10DCDB-AD58-437F-A71C-B5C440728735} = {46AC1D88-BD23-4764-BE4D-8E0EDC27BBC5}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {81B0BD89-69DA-4C93-B7BB-25BEE4CA7CFF}
 	EndGlobalSection
 EndGlobal
