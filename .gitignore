@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Houdini/.vs/Houdini
+/Houdini/src/Houdini/bin
+/Houdini/src/Houdini/obj
+/Houdini/src/Houdini.Tests/bin
+/Houdini/src/Houdini.Tests/obj
+/Houdini/src/HoudiniApp/bin
+/Houdini/src/HoudiniApp/obj
