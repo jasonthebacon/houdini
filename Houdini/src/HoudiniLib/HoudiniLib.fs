@@ -24,7 +24,9 @@ module Key =
     let fromEnv (varName: string) : Key =
         Key(System.Environment.GetEnvironmentVariable(varName).UrlSafe64Decode())
 
-    let print (Key value) : unit = printfn "%s" (value.UrlSafe64Encode())
+    let toString (Key value) : string = value.UrlSafe64Encode()
+
+    let print k : unit = printfn "%s" (k |> toString)
 
 module Encryption =
     open StringByteConversion

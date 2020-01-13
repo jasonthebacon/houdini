@@ -8,3 +8,4 @@
 /Houdini/publish
 /Houdini/src/**/Properties/PublishProfiles
 /Houdini/**/*.fsproj.user
+/Houdini/**/publish/**/*

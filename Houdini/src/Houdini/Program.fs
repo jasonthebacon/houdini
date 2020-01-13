@@ -3,18 +3,18 @@
 open System
 open System.IO
 open Houdini
+open Constants
 
 type Mode =
     | Initialize
     | Encrypt of key: Key.Key
     | Decrypt of key: Key.Key
     | Generate of password: string
+    | Setup
+    | Unsetup
     | Help
 
-let PATTERN_FILENAME = ".houdini"
 let getPatternFilePath () : string = Path.Combine(Directory.GetCurrentDirectory(), PATTERN_FILENAME)
-
-let KEY_ENV_VAR_NAME = "ENCRYPTION_TOOLS_KEY"
 
 let getEncrypt (args: string[]) : Mode =
     let key = if ((Array.length args) < 2) then Key.fromEnv(KEY_ENV_VAR_NAME) else Key.from(args.[1])
@@ -40,6 +40,8 @@ let discernMode (args: string[]) : Mode =
     elif "encrypt".StartsWith(modeString) then getEncrypt(args)
     elif "decrypt".StartsWith(modeString) then getDecrypt(args)
     elif "generate".StartsWith(modeString) then getGenerate(args)
+    elif "setup".StartsWith(modeString) then Setup
+    elif "unsetup".StartsWith(modeString) then Unsetup
     elif "help".StartsWith(modeString) then Help
     else
         eprintfn "Unrecognized command: %s" args.[0]
@@ -52,12 +54,15 @@ Valid commands:
     encrypt [key]           -- Encrypts files specified in the current directory's " + PATTERN_FILENAME + @" file using [key].
     decrypt [key]           -- Decrypts files specified in the current directory's " + PATTERN_FILENAME + @" file using [key].
     generate [password]     -- Generates a new key using [password] and prints it to STDOUT.
+    setup                   -- Starts interactive setup for git aliases.
+    unsetup                 -- Starts interactive un-setup for git aliases.
     help                    -- Prints this help information.
 
 * If [key] is not provided for encrypt/decrypt, Houdini will extract a key from the " + KEY_ENV_VAR_NAME + @" environment variable.
 * If [password] is not provided for password generation, Houdini will prompt for one.
 * Commands are not case-sensitive (e.g. `INITIALIZE` is equivalent to `initialize`).
 * All but the first letter of the command word can be omitted (e.g. `init` is equivalent to `initialize`).
+* Setup should be run from the directory containing the Houdini binaries. If it is run anywhere else, you will have to provide the path to the directory containing Houdini.
 
 "
 
@@ -76,6 +81,8 @@ let handleMode (mode: Mode) : unit =
     | Encrypt key -> Run.run Action.Encrypt patternFilePath currentWorkingDirectory key
     | Decrypt key -> Run.run Action.Decrypt patternFilePath currentWorkingDirectory key
     | Generate password -> Key.generate(password) |> Key.print
+    | Setup -> Setup.setup()
+    | Unsetup -> Setup.unsetup()
     | Help -> printfn "Your current working directory is %s.\n%s" currentWorkingDirectory HELP_TEXT
 
 [<EntryPoint>]
