@@ -62,7 +62,7 @@ Valid commands:
 * If [password] is not provided for password generation, Houdini will prompt for one.
 * Commands are not case-sensitive (e.g. `INITIALIZE` is equivalent to `initialize`).
 * All but the first letter of the command word can be omitted (e.g. `init` is equivalent to `initialize`).
-* Setup should be run from the directory containing the Houdini binaries. If it is run anywhere else, you will have to provide the path to the directory containing Houdini.
+* Setup should be run from the directory containing the Houdini binaries. If it is run anywhere else, you will have to provide the path to the directory containing Houdini. The `git` executable must be in your PATH to run Setup.
 * The filename {0} and environment variable name {1} are configurable via the Houdini.ini file (in the directory where the Houdini binaries are installed).
 
 ", config.patternFilename, config.keyEnvironmentVariableName)

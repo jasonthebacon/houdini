@@ -15,7 +15,7 @@ let private promptYN (question: string) : bool =
 let private prompt (msg: string): string =
     Console.Write(msg + ": "); Console.ReadLine()
 
-let private alias (houdiniPath: string) (key: string option) : unit =
+let private alias (config: Config) (houdiniPath: string) (key: string option) : unit =
     let keySuffix =
         match key with
         | Some k -> " '" + k + "'"
@@ -24,6 +24,13 @@ let private alias (houdiniPath: string) (key: string option) : unit =
     Process.Start("git", @"config --global alias.hide ""!dotnet '" + houdiniPath + @"' encrypt" + keySuffix + @"""").WaitForExit(timeoutMs) |> ignore
     Process.Start("git", @"config --global alias.reveal ""!dotnet '" + houdiniPath + @"' decrypt" + keySuffix + @"""").WaitForExit(timeoutMs) |> ignore
     Process.Start("git", @"config --global alias.initEncrypt ""!dotnet '" + houdiniPath + @"' initialize""").WaitForExit(timeoutMs) |> ignore
+    Console.WriteLine(@"
+Git aliases set -- you can now use
+
+- `git hide`            to encrypt sensitive files in {0}
+- `git reveal`          to decrypt sensitive files in {0}
+- `git initEncrypt`     to create a {0} file in the current directory
+", config.patternFilename)
 
 let private unalias () : unit =
     let timeoutMs = 5000
@@ -84,5 +91,5 @@ let setup (config: Config) : unit =
             printfn "No key provided to setup. You can always set the %s environment variable with your key, and Houdini will read it from there." config.keyEnvironmentVariableName
             retrievedKey
     printfn "Setting git aliases..."
-    alias houdiniPath keyOpt
+    alias config houdiniPath keyOpt
     printfn "Setup complete."
