@@ -7,6 +7,6 @@ let targets = [
     "linux-x64";
 ]
 let publishTarget (target: string) = 
-    Process.Start("dotnet", "publish --runtime " + target + " --self-contained false -o publish/" + target).WaitForExit()
+    Process.Start("dotnet", "publish --configuration Release --runtime " + target + " --self-contained false -o publish/" + target).WaitForExit()
 
 for target in targets do (publishTarget target)

@@ -5,7 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="fernet-dotnet-license.txt" CopyToPublishDirectory="Always"/>
+    <Content Include="fernet-dotnet-license.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Compile Include="HoudiniLib.fs" />
   </ItemGroup>
 

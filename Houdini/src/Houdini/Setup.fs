@@ -4,7 +4,7 @@ open System
 open System.IO
 open System.Diagnostics
 
-open Constants
+open Config
 open Houdini
 
 let private promptYN (question: string) : bool =
@@ -48,12 +48,12 @@ let private tryGetKey () : string option =
     else
         None
         
-let private checkEnvForKey () : string option =
-    let envKey = System.Environment.GetEnvironmentVariable(KEY_ENV_VAR_NAME)
+let private checkEnvForKey (envVarName: string) : string option =
+    let envKey = System.Environment.GetEnvironmentVariable(envVarName)
     if (String.IsNullOrEmpty(envKey)) then 
         None 
     else 
-        printfn "Found a key in the %s environment variable: %s" KEY_ENV_VAR_NAME envKey
+        printfn "Found a key in the %s environment variable: %s" envVarName envKey
         Some envKey
 
 let unsetup () : unit =
@@ -64,10 +64,10 @@ let unsetup () : unit =
     else
         ()
 
-let setup () : unit =
+let setup (config: Config) : unit =
     let houdiniPath = getHoudiniPath()
     let keyFromEnv =
-        match (checkEnvForKey()) with
+        match (checkEnvForKey(config.keyEnvironmentVariableName)) with
         | Some key -> if (promptYN ("Do you want to use this as your key? " + key + " ")) then Some key else None
         | _ -> None
     let retrievedKey = if (Option.isSome keyFromEnv) then keyFromEnv else tryGetKey()
@@ -78,10 +78,10 @@ let setup () : unit =
             if (promptYN ("Do you want to put this key in your git aliases?\nNote that anyone with access to your global .gitconfig will be able to see it!")) then
                 retrievedKey
             else
-                printfn "Okay. You can always set the %s environment variable with your key, and Houdini will read it from there." KEY_ENV_VAR_NAME
+                printfn "Okay. You can always set the %s environment variable with your key, and Houdini will read it from there." config.keyEnvironmentVariableName
                 None
         | _ ->
-            printfn "No key provided to setup. You can always set the %s environment variable with your key, and Houdini will read it from there." KEY_ENV_VAR_NAME
+            printfn "No key provided to setup. You can always set the %s environment variable with your key, and Houdini will read it from there." config.keyEnvironmentVariableName
             retrievedKey
     printfn "Setting git aliases..."
     alias houdiniPath keyOpt
