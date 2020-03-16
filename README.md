@@ -2,7 +2,7 @@
 
 Tool to hide sensitive files/blatant rip-off of https://github.com/josephp27/GitCrypt
 
-USE AT YOUR OWN RISK.
+USE AT YOUR OWN RISK. No, seriously, if you have to ask yourself whether or not you should use this tool, the answer is ~~probably~~certainly *no*. It was written on the quick for a particular use case, and might even be dangerous if you're not sure why you're here.
 
 
 Prerequisites
